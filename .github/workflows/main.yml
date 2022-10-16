@@ -32,5 +32,9 @@ jobs:
         BRANCH: gh-pages
         FOLDER: release/wwwroot
         
+      # changes the base-tag in index.html from '/' to 'BlazorWasm' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
+      run: sed -i 's/<base href="\/" \/>/<base href="\/BlazorWasm\/" \/>/g' release/wwwroot/index.html
+        
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v3.0.2
