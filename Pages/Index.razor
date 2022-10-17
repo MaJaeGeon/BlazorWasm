@@ -1,6 +1,5 @@
 ﻿@page "/"
 @inject HttpClient Http
-@using System
 
 <PageTitle>Index</PageTitle>
 
@@ -9,7 +8,7 @@
 
 Welcome to your new app.
 
-@if (posts == null)
+@if (null == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -20,62 +19,15 @@ else
             <tr>
                 <th>Name</th>
                 <th>Path</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var post in posts)
+            @foreach (var item in Items)
             {
                 <tr>
-                    <td>@post.Name</td>
-                    <td>@post.Path</td>
+                    <td>@item.Name</td>
                 </tr>
             }
         </tbody>
     </table>
-}
-
-
-@code {
-    private Posts[]? posts;
-    protected override async Task OnInitializedAsync()
-    {
-        posts = await Http.GetFromJsonAsync<Posts[]>(@"https://api.github.com/repos/MaJaeGeon/majaegeon.github.io/contents/posts");
-    }
-
-
-    public class Links
-    {
-        public string Self { get; set; }
-
-        public string Git { get; set; }
-
-        public string Html { get; set; }
-    }
-
-    public class Posts
-    {
-        public string Name { get; set; }
-
-        public string Path { get; set; }
-
-        public string Sha { get; set; }
-
-        public int Size { get; set; }
-
-        public string Url { get; set; }
-
-        public string HtmlUrl { get; set; }
-
-        public string GitUrl { get; set; }
-
-        public object DownloadUrl { get; set; }
-
-        public string Type { get; set; }
-
-        public Links Links { get; set; }
-    }
-
-
 }
