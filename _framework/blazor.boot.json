@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "BlazorWasm.dll": "sha256-IldK\/cqsVWmYXWjOSBcLG6ZN8F55Bfqa1rzgFNT\/63E=",
+      "BlazorWasm.dll": "sha256-Z4ekonyjfwBaJ6za62L5Z6dLGy8C\/gaWQzYg0NGrTRU=",
       "GraphQL.Client.Abstractions.dll": "sha256-6udBGzs8HDoDPV0GddZYTsoBgwVynXnV2thSr5ipeJQ=",
       "GraphQL.Client.Abstractions.Websocket.dll": "sha256-DKayQR4tBDf1wzF5aHVTccUkFT48m6INmtScoU48Mtg=",
       "GraphQL.Client.dll": "sha256-LLaunpFQWnc55ThUFyLWvUHCfM\/nJQRpUwmcXuXZr4c=",
