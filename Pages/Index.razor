@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/{link}"
 @inject HttpClient Http
 
 <PageTitle>Index</PageTitle>
@@ -8,7 +8,7 @@
 
 Welcome to your new app.
 
-@if (null == null)
+@if (Items == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -26,6 +26,7 @@ else
             {
                 <tr>
                     <td>@item.Name</td>
+                    <td>@item.Path</td>
                 </tr>
             }
         </tbody>

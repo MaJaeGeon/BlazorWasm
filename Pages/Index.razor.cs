@@ -20,6 +20,7 @@ namespace BlazorWasm.Pages
                                     ... on Tree {
                                     entries {
                                         name
+                                        path
                                     }
                                 }
                             }
@@ -29,7 +30,7 @@ namespace BlazorWasm.Pages
                 Variables = new {
                     repoName = "majaegeon.github.io",
                     repoOwner = "MaJaeGeon",
-                    path = "HEAD:posts/Csharp/"
+                    path = $"HEAD:posts/{link}"
                 }
             };
 
@@ -37,9 +38,10 @@ namespace BlazorWasm.Pages
             var graphqlResponse = await graphQLClient.SendQueryAsync<Posts>(personAndFilmsRequest);
             Items = graphqlResponse.Data.Data.Repository.Object.Entries;
         }
+
+        [Parameter]
+        public string? link { get; set; }
     }
-
-
 
     public class Data
     {
@@ -49,6 +51,7 @@ namespace BlazorWasm.Pages
     public class Entry
     {
         public string Name { get; set; }
+        public string Path { get; set; }
     }
 
     public class Object
