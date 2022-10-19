@@ -1,5 +1,6 @@
-﻿@page "/{link}"
+﻿@page "/{link?}"
 @inject HttpClient Http
+
 
 <PageTitle>Index</PageTitle>
 
@@ -25,7 +26,7 @@ else
             @foreach (var item in Items)
             {
                 <tr>
-                    <td>@item.Name</td>
+                    <td><NavLink class="nav-link" href=@item.Name>@item.Name</NavLink></td>
                     <td>@item.Path</td>
                 </tr>
             }
