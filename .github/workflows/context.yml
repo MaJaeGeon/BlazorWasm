@@ -5,16 +5,13 @@ jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest  # ubuntu 최신버전에서 실행
     steps:
-      - name: Master Checkout
         uses: actions/checkout@v3 # master branch 의 파일들 가져오기
-        with:
-          path: master
 
-      - name: Posts Checkout
+      - name: Contents Checkout
         uses: actions/checkout@v3 # post branch 의 파일들 가져오기
         with: 
-          ref: posts
-          path: posts
+          ref: contents
+          path: contents
 
       - name: Set up Python # Install Python
         uses: actions/setup-python@v2
@@ -23,4 +20,5 @@ jobs:
           
       - name: Run
         run: |
+          ls -al
           python test.py
