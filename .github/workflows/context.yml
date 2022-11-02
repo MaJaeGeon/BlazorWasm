@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest  # ubuntu 최신버전에서 실행
     steps:
       - uses: actions/checkout@v3 # post branch 의 파일들 가져오기
-        with: 
-          ref: posts
+        #with: 
+        #  ref: posts
 
       - name: Set up Python # Install Python
         uses: actions/setup-python@v2
