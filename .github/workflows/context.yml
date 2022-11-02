@@ -26,4 +26,6 @@ jobs:
         run: |
           ls -al
           python test.py
-          cat contents/contentsmap.json
+      
+      - name: Cat
+        run: cat ./contents/contentsmap.json
