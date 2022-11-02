@@ -12,6 +12,6 @@ def path_to_dict(path):
     return d
 
 with open("contentsmap.json", 'w') as file:
-    json.dumps(path_to_dict('./contents/'), file)
+    json.dump(path_to_dict('./contents/'), file)
 
 #print(json.dumps(path_to_dict('./contents/')))
