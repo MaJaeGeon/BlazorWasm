@@ -22,5 +22,5 @@ jobs:
           
       - name: Run
         run: |
-          ls
+          ls -al
           python test.py
