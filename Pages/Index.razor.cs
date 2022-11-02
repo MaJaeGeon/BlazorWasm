@@ -51,7 +51,7 @@ namespace  BlazorWasm.Pages {
                 path = $"posts:"
             }};
         
-            graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", $"bearer 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");
+            graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", $"bearer ");
             var graphqlResponse = await graphQLClient.SendQueryAsync<Root>(query);
 
             Items = graphqlResponse.Data.Data.Repository.Object.Entries;
