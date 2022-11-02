@@ -1,0 +1,14 @@
+name: Context testing
+on: push
+
+jobs:
+  dump_contexts_to_log:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with: 
+          ref: posts
+      - name: ls -al
+        run: |
+          touch '${{ github.repository_owner }}';
+          ls -al;
