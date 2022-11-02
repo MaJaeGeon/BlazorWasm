@@ -26,4 +26,4 @@ jobs:
         run: |
           ls -al
           python test.py
-          cat contentsmap.json
+          cat contents/contentsmap.json
