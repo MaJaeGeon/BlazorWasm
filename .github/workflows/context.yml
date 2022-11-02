@@ -29,6 +29,5 @@ jobs:
       
       - name: Cat
         run: |
-          cd contents
           ls -al
           
