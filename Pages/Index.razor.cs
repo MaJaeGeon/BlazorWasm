@@ -13,53 +13,74 @@ namespace  BlazorWasm.Pages {
         {
             GraphQLHttpClient graphQLClient = new GraphQLHttpClient("https://api.github.com/graphql", new SystemTextJsonSerializer());
                 
-            var personAndFilmsRequest = new GraphQLRequest {
+            var query = new GraphQLRequest {
             Query =@"
-                query GetPosts($repoName: String!, $repoOwner: String!, $path: String){
-                    repository(name: $repoName, owner: $repoOwner) {
-                            object(expression: $path) {
-                                ... on Tree {
+            query GetStructures($repoName: String!, $repoOwner: String!, $path: String!){
+                repository(name: $repoName, owner: $repoOwner) {
+                    object(expression: $path) {
+                        ... on Tree {
                                 entries {
-                                    name
-                                    path
+                                name
+                                path
+                                object {
+                                    ... on Tree {
+                                        entries {
+                                            name
+                                            path
+                                            object {
+                                                ... on Tree {
+                                                    entries {
+                                                        name
+                                                        path
+                                                        type
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            }
             ",
             Variables = new {
-                repoName = "majaegeon.github.io",
+                repoName = "BlazorWasm",
                 repoOwner = "MaJaeGeon",
-                path = $"HEAD:posts/{link}"
+                path = $"posts:"
             }};
         
             graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", $"bearer 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");
-            var graphqlResponse = await graphQLClient.SendQueryAsync<Posts>(personAndFilmsRequest);
+            var graphqlResponse = await graphQLClient.SendQueryAsync<Root>(query);
 
-            Items = graphqlResponse.Data.Repository.Object.Entries;
+            Items = graphqlResponse.Data.Data.Repository.Object.Entries;
+            // 여기서 이제 Blob랑 Tree 랑 구분해서 루프돌려야함.
         }
 
 
-        public class Posts
-        {
-            public Repository Repository { get; set; }
+        public class Data {
+            public Repository Repository { get; set; } = null!;
         }
 
-        public class Entry
-        {
-            public string Name { get; set; }
-            public string Path { get; set; }
+        public class Entry {
+            public string Name { get; set; } = null!;
+            public string Path { get; set; } = null!;
+            public Object Object { get; set; } = null!;
+            public string Type { get; set; } = null!;
         }
 
-        public class Object
-        {
-            public List<Entry> Entries { get; set; }
+        public class Object {
+            public List<Entry> Entries { get; set; } = null!;
         }
 
-        public class Repository
-        {
-            public Object Object { get; set; }
+        public class Repository {
+            public Object Object { get; set; } = null!;
         }
+
+        public class Root {
+            public Data Data { get; set; } = null!;
+        }
+
     }
 }
