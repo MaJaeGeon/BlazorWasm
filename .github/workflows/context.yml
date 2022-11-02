@@ -28,4 +28,7 @@ jobs:
           python test.py
       
       - name: Cat
-        run: cat ./contents/contentsmap.json
+        run: |
+          cd contents
+          ls -al
+          
